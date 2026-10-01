@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://ibrodevs.github.io/avtoterra-web/sitemap.xml
