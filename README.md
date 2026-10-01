@@ -1,32 +1,51 @@
 # АвтоТерра — legal website
 
-Публичный статический сайт для мобильного приложения **«АвтоТерра»**.
+Публичный статический сайт для мобильного приложения **«АвтоТерра»**, подготовленный для деплоя на Vercel.
 
 ## Страницы
 
-- `index.html` — главная страница правовой информации.
-- `privacy.html` — политика конфиденциальности для Google Play.
-- `delete-account.html` — внешний ресурс для запроса удаления аккаунта.
-- `styles.css` — адаптивные стили без внешних трекеров и библиотек.
+- `/` — главная страница правовой информации.
+- `/privacy` — политика конфиденциальности для Google Play.
+- `/delete-account` — внешний ресурс для запроса удаления аккаунта.
 
-## Публикация через GitHub Pages
+Исходные файлы `privacy.html` и `delete-account.html` автоматически доступны по чистым URL благодаря `cleanUrls` в `vercel.json`.
 
-1. Откройте репозиторий на GitHub.
-2. Перейдите в **Settings → Pages**.
-3. В разделе **Build and deployment** выберите **Deploy from a branch**.
-4. Branch: **main**.
-5. Folder: **/ (root)**.
-6. Нажмите **Save**.
+## Деплой на Vercel
 
-После публикации ожидаемые URL:
+1. Откройте Vercel Dashboard.
+2. Нажмите **Add New → Project**.
+3. Импортируйте GitHub-репозиторий **ibrodevs/avtoterra-web**.
+4. В настройках проекта:
+   - **Framework Preset:** Other;
+   - **Root Directory:** `./`;
+   - **Build Command:** оставить пустым;
+   - **Output Directory:** оставить пустым;
+   - **Install Command:** оставить пустым.
+5. Нажмите **Deploy**.
 
-- Сайт: https://ibrodevs.github.io/avtoterra-web/
-- Политика: https://ibrodevs.github.io/avtoterra-web/privacy.html
-- Удаление аккаунта: https://ibrodevs.github.io/avtoterra-web/delete-account.html
+Сайт полностью статический, поэтому Node.js, npm и переменные окружения не нужны.
 
-В Google Play Console для поля **«Политика конфиденциальности»** используйте прямой URL `privacy.html`.
+## После первого деплоя
 
-Для раздела **Data safety → Account deletion** используйте прямой URL `delete-account.html`.
+Vercel выдаст production URL. Используйте:
+
+- `https://<ваш-домен>/privacy` — в Google Play Console → **Политика конфиденциальности**;
+- `https://<ваш-домен>/delete-account` — для раздела удаления аккаунта/Data safety.
+
+Если вы подключите собственный домен, используйте именно его постоянные production URL.
+
+## Vercel configuration
+
+`vercel.json` включает:
+
+- clean URLs без `.html`;
+- единый формат URL без завершающего слэша;
+- дополнительные совместимые URL `/privacy-policy` и `/account-deletion`;
+- security headers: CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy и Permissions-Policy.
+
+## SEO
+
+`robots.txt` разрешает индексацию. После выбора постоянного production-домена можно добавить `sitemap.xml` и canonical URL с этим доменом. Не следует хранить sitemap с временным или неверным доменом.
 
 ## Важно
 
